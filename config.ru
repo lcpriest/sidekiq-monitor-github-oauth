@@ -1,18 +1,32 @@
 require 'sidekiq'
+require 'sidekiq/web'
+require 'sinatra_auth_github'
 
 Sidekiq.configure_client do |config|
-  config.redis = { 
+  config.redis = {
     size: 1,
-    url: ENV['REDIS_PROVIDER']
+    url: ENV['SIDEKIQ_REDIS_URL']
   }
 end
 
-require 'sidekiq/web'
+module Sidekiq
+  class Web
+    set :github_options, scopes: 'user',
+                         client_id: ENV['GITHUB_CLIENT_ID'],
+                         secret: ENV['GITHUB_SECRET']
 
-# use Rack::Session::Cookie, secret: ENV['RACK_SESSION_COOKIE']
-map '/' do
-  use Rack::Auth::Basic, "Protected Area" do |username, password|
-    username == ENV['USERNAME'] && password == ENV['PASSWORD']
+    register Sinatra::Auth::Github
+
+    before do
+      authenticate!
+      github_organization_authenticate!(ENV['GITHUB_ORG'])
+    end
+
+    get '/logout' do
+      logout!
+      redirect ENV['LOGOUT_REDIRECT_URL']
+    end
   end
-  run Sidekiq::Web
 end
+
+run Sidekiq::Web
