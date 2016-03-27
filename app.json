@@ -23,7 +23,7 @@
       "description": "Where to go after logout?",
       "required": true
     },
-    "SIDEKIQ_REDIS_URL": {
+    "REDIS_URL": {
       "description": "Your Sidekiq redis database url",
       "required": true
     },

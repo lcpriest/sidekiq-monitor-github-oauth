@@ -5,7 +5,7 @@ require 'sinatra_auth_github'
 Sidekiq.configure_client do |config|
   config.redis = {
     size: 1,
-    url: ENV['SIDEKIQ_REDIS_URL']
+    url: ENV['REDIS_URL']
   }
 end
 

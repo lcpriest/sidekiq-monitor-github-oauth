@@ -42,7 +42,7 @@ Edit the `.env` file values:
 	Get these values from your [Github application settings page](https://github.com/settings/developers)
 
 
-- `SIDEKIQ_REDIS_URL`
+- `REDIS_URL`
 
 	URL to redis server
 
