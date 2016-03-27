@@ -1,21 +1,74 @@
-# sidekiq-web-ui
-A tiny Sinatra app to display the current state of a Sidekiq installation.
+# Sidekiq Monitor Github OAuth
+
+A tiny Github-OAuth protected Sinatra app to display the current state of a Sidekiq installation.
+
+Originally forked from [tbalthazar/sidekiq-web-ui](https://github.com/tbalthazar/sidekiq-web-ui). This repo use [Github OAuth](https://developer.github.com/v3/oauth/) instead of HTTP basic auth.
+
 
 ## Usage
 
 This [standalone Sinatra app](https://github.com/mperham/sidekiq/wiki/Monitoring#standalone) helps monitoring a [Sidekiq](http://sidekiq.org/) installation running as a separate app.
 
-I made this to monitor a Sidekiq installation running on Heroku, but it should be usable elsewhere too.
+Made to monitor a Sidekiq installation running on [Heroku](https://heroku.com), but it should be usable elsewhere too.
+
+
+## Prerequisite
+
+Register your application on [Github](https://github.com/settings/developers).
+
+Default authorization callback URL: `<http://example.com>/auth/github/callback`
+
+You will need the `Client ID` and `Client Secret`.
+
 
 ## Installation
 
-```
-git clone https://github.com/tbalthazar/sidekiq-web-ui.git
-cd sidekiq-web-ui
+```shell
+git clone https://github.com/TangRufus/sidekiq-monitor-github-oauth.git
+cd sidekiq-monitor-github-oauth
 bundle install
 cp .env.example .env
 ```
 
-Then :
-- edit the `.env` file values.
-- run `foreman start`
+
+## Setting environment variables:
+
+Edit the `.env` file values:
+
+- `GITHUB_CLIENT_ID` and `GITHUB_SECRET`
+
+	Get these values from your [Github application settings page](https://github.com/settings/developers)
+
+
+- `SIDEKIQ_REDIS_URL`
+
+	URL to redis server
+
+
+- `WARDEN_GITHUB_VERIFIER_SECRET`
+
+	A very long random string
+
+	`$ openssl rand -base64 48` and `$ rails serect` are your friends.
+
+
+- `GITHUB_ORG` _Optional_
+
+	Set this to your Github organization name to provide access to organization members only
+
+	**Important** If you don't need this feature, remove this line
+
+	```ruby
+	# config.ru
+	github_organization_authenticate!(ENV['GITHUB_ORG'])
+	```
+
+
+## To start the server:
+
+`$ heroku local web` or `$ foreman start`
+
+
+## Roadmap
+
+[ ] Add [Heroku Button](https://devcenter.heroku.com/articles/heroku-button)
