@@ -13,13 +13,13 @@ module Sidekiq
   class Web
     set :github_options, scopes: 'user',
                          client_id: ENV['GITHUB_CLIENT_ID'],
-                         secret: ENV['GITHUB_SECRET']
+                         secret: ENV['GITHUB_CLIENT_SECRET']
 
     register Sinatra::Auth::Github
 
     before do
       authenticate!
-      github_organization_authenticate!(ENV['GITHUB_ORG'])
+      github_organization_authenticate!(ENV['GITHUB_ORG']) if ENV['GITHUB_ORG']
     end
 
     get '/logout' do

@@ -1,5 +1,7 @@
 # Sidekiq Monitor Github OAuth
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TangRufus/sidekiq-monitor-github-oauth)
+
 A tiny Github-OAuth protected Sinatra app to display the current state of a Sidekiq installation.
 
 Originally forked from [tbalthazar/sidekiq-web-ui](https://github.com/tbalthazar/sidekiq-web-ui). This repo use [Github OAuth](https://developer.github.com/v3/oauth/) instead of HTTP basic auth.
@@ -35,7 +37,7 @@ cp .env.example .env
 
 Edit the `.env` file values:
 
-- `GITHUB_CLIENT_ID` and `GITHUB_SECRET`
+- `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`
 
 	Get these values from your [Github application settings page](https://github.com/settings/developers)
 
@@ -45,11 +47,16 @@ Edit the `.env` file values:
 	URL to redis server
 
 
+- `LOGOUT_REDIRECT_URL`
+
+	Where to go after logout?
+
+
 - `WARDEN_GITHUB_VERIFIER_SECRET`
 
 	A very long random string
 
-	`$ openssl rand -base64 48` and `$ rails serect` are your friends.
+	`$ openssl rand -base64 48` and `$ rails secret` are your friends.
 
 
 - `GITHUB_ORG` _Optional_
@@ -71,4 +78,4 @@ Edit the `.env` file values:
 
 ## Roadmap
 
-[ ] Add [Heroku Button](https://devcenter.heroku.com/articles/heroku-button)
+- [x] ~~Add [Heroku Button](https://devcenter.heroku.com/articles/heroku-button)~~
