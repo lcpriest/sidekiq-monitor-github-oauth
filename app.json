@@ -16,7 +16,7 @@
       "required": true
     },
     "GITHUB_ORG": {
-      "description": "Your Twilio authentication token",
+      "description": "Your Github organization name. Restrict access to organization members only",
       "required": true
     },
     "LOGOUT_REDIRECT_URL": {
@@ -26,10 +26,6 @@
     "REDIS_URL": {
       "description": "Your Sidekiq redis database url",
       "required": true
-    },
-    "GITHUB_ORG": {
-      "description": "Your Github organization name. Restrict access to organization members only",
-      "required": false
     },
     "WARDEN_GITHUB_VERIFIER_SECRET": {
       "description": "A very long random string",

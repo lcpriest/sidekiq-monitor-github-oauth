@@ -42,6 +42,11 @@ Edit the `.env` file values:
 	Get these values from your [Github application settings page](https://github.com/settings/developers)
 
 
+- `GITHUB_ORG`
+
+	Set this to your Github organization name to provide access to organization members only.
+
+
 - `REDIS_URL`
 
 	URL to redis server
@@ -57,18 +62,6 @@ Edit the `.env` file values:
 	A very long random string
 
 	`$ openssl rand -base64 48` and `$ rails secret` are your friends.
-
-
-- `GITHUB_ORG` _Optional_
-
-	Set this to your Github organization name to provide access to organization members only
-
-	**Important** If you don't need this feature, remove this line
-
-	```ruby
-	# config.ru
-	github_organization_authenticate!(ENV['GITHUB_ORG'])
-	```
 
 
 ## To start the server:
