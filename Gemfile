@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'puma', '~> 3.2'
+gem 'puma', '~> 3.4.0'
 gem 'sinatra', '~> 1.4', '>= 1.4.7', require: nil
 gem 'sinatra_auth_github', '~> 1.2'
 

@@ -18,7 +18,7 @@ GEM
     multipart-post (2.0.0)
     octokit (4.3.0)
       sawyer (~> 0.7.0, >= 0.5.3)
-    puma (3.2.0)
+    puma (3.4.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -52,7 +52,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  puma (~> 3.2)
+  puma (~> 3.4.0)
   sidekiq (~> 4.1, >= 4.1.1)
   sinatra (~> 1.4, >= 1.4.7)
   sinatra_auth_github (~> 1.2)
