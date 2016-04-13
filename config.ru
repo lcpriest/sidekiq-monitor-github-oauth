@@ -19,7 +19,7 @@ module Sidekiq
 
     before do
       authenticate!
-      github_organization_authenticate!(ENV['GITHUB_ORG']) if ENV['GITHUB_ORG']
+      github_organization_authenticate!(ENV['GITHUB_ORG'])
     end
 
     get '/logout' do
