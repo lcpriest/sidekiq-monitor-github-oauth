@@ -1,6 +1,9 @@
 # Sidekiq Monitor Github OAuth
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TangRufus/sidekiq-monitor-github-oauth)
+[![Dependency Status](https://gemnasium.com/badges/github.com/TangRufus/sidekiq-monitor-github-oauth.svg)](https://gemnasium.com/github.com/TangRufus/sidekiq-monitor-github-oauth)
+[![Code Climate](https://codeclimate.com/github/TangRufus/sidekiq-monitor-github-oauth/badges/gpa.svg)](https://codeclimate.com/github/TangRufus/sidekiq-monitor-github-oauth)
+[![License-GPLv2-blue](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://github.com/TangRufus/sidekiq-monitor-github-oauth/blob/master/LICENSE)
+
 
 A tiny Github-OAuth protected Sinatra app to display the current state of a Sidekiq installation.
 
@@ -31,6 +34,12 @@ cd sidekiq-monitor-github-oauth
 bundle install
 cp .env.example .env
 ```
+
+## Deployment
+
+If you are using [Heroku](https://heroku.com), just click the deploy button and configure the envirment variables.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TangRufus/sidekiq-monitor-github-oauth)
 
 
 ## Setting environment variables:
@@ -68,7 +77,3 @@ Edit the `.env` file values:
 
 `$ heroku local web` or `$ foreman start`
 
-
-## Roadmap
-
-- [x] ~~Add [Heroku Button](https://devcenter.heroku.com/articles/heroku-button)~~
