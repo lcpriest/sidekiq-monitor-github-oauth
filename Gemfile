@@ -9,6 +9,7 @@ gem 'sinatra_auth_github', '~> 1.2'
 gem 'sidekiq', '~> 4.1', '>= 4.1.2'
 
 group :development do
+  gem 'dotenv', '~> 2.1', '>= 2.1.1'
   gem 'rubocop', '~> 0.40.0'
 end
 

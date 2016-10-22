@@ -1,34 +1,43 @@
 # frozen_string_literal: true
 
-require 'sidekiq'
-require 'sidekiq/web'
-require 'sinatra_auth_github'
+require 'sinatra/base'
+if Sinatra::Base.development?
+  require 'dotenv'
+  Dotenv.load
+end
 
+require 'sidekiq'
 Sidekiq.configure_client do |config|
   config.redis = {
     size: 1,
-    url: ENV['REDIS_URL']
+    url: ENV.fetch('REDIS_URL')
   }
 end
 
-module Sidekiq
-  class Web
+require 'sinatra_auth_github'
+module App
+  class Web < Sinatra::Base
+    enable :sessions
+
     set :github_options, scopes: 'user',
-                         client_id: ENV['GITHUB_CLIENT_ID'],
-                         secret: ENV['GITHUB_CLIENT_SECRET']
+                         client_id: ENV.fetch('GITHUB_CLIENT_ID'),
+                         secret: ENV.fetch('GITHUB_CLIENT_SECRET')
 
     register Sinatra::Auth::Github
 
-    before do
+    before /^(?:(?!((^\/logout)|((\.css|\.js)$))).)*$/ do
       authenticate!
-      github_organization_authenticate!(ENV['GITHUB_ORG'])
+      github_organization_authenticate! ENV.fetch('GITHUB_ORG')
     end
 
     get '/logout' do
       logout!
-      redirect ENV['LOGOUT_REDIRECT_URL']
+      redirect ENV.fetch('LOGOUT_REDIRECT_URL')
     end
   end
 end
+
+require 'sidekiq/web'
+use App::Web
 
 run Sidekiq::Web
