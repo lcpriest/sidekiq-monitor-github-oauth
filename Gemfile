@@ -10,7 +10,7 @@ gem 'sidekiq', '~> 4.1', '>= 4.1.2'
 
 group :development do
   gem 'dotenv', '~> 2.1', '>= 2.1.1'
-  gem 'rubocop', '~> 0.40.0'
+  gem 'rubocop', '~> 0.45.0'
 end
 
 ruby '2.3.1'
