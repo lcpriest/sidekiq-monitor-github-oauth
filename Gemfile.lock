@@ -39,7 +39,7 @@ GEM
     sawyer (0.8.0)
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 0.10)
-    sidekiq (4.2.5)
+    sidekiq (4.2.6)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
