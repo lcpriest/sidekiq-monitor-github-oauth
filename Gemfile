@@ -13,4 +13,4 @@ group :development do
   gem 'rubocop', '~> 0.45.0'
 end
 
-ruby '2.3.2'
+ruby '2.3.3'
