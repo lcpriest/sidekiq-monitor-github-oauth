@@ -12,4 +12,4 @@ group :development do
   gem 'rubocop', '>= 0.45.0', '< 2'
 end
 
-ruby '2.3.3'
+ruby '2.5.1'
