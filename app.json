@@ -1,35 +1,19 @@
 {
-  "name": "Sidekiq Monitor Github OAuth",
-  "description": "A tiny Github-OAuth protected Sinatra app to display the current state of a Sidekiq installation.",
-  "repository": "https://github.com/TangRufus/sidekiq-monitor-github-oauth",
-  "keywords": ["sidekiq", "github", "oauth", "sidekiq-web-ui", "monitor"],
+  "name": "Sidekiq Monitor Basic OAuth",
+  "description": "A tiny Basic-OAuth protected Sinatra app to display the current state of a Sidekiq installation.",
+  "repository": "https://github.com/lcpriest/sidekiq-monitor-github-oauth",
+  "keywords": ["sidekiq", "sidekiq-web-ui", "monitor"],
   "addons": [
     "logentries:le_tryit"
   ],
   "env": {
-    "GITHUB_CLIENT_ID": {
-      "description": "Your Github app client ID",
+    "SIDEKIQ_USERNAME": {
+      "description": "Sidekiq username",
       "required": true
     },
-    "GITHUB_CLIENT_SECRET": {
-      "description": "Your Github app client secret",
+    "SIDEKIQ_PASSWORD": {
+      "description": "Sidekiq password",
       "required": true
-    },
-    "GITHUB_ORG": {
-      "description": "Your Github organization name. Restrict access to organization members only",
-      "required": true
-    },
-    "LOGOUT_REDIRECT_URL": {
-      "description": "Where to go after logout?",
-      "required": true
-    },
-    "REDIS_URL": {
-      "description": "Your Sidekiq redis database url",
-      "required": true
-    },
-    "WARDEN_GITHUB_VERIFIER_SECRET": {
-      "description": "A very long random string",
-      "generator": "secret"
     }
   }
 }

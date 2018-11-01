@@ -14,30 +14,17 @@ Sidekiq.configure_client do |config|
   }
 end
 
-require 'sinatra_auth_github'
-module App
-  class Web < Sinatra::Base
-    enable :sessions
-
-    set :github_options, scopes: 'user',
-                         client_id: ENV.fetch('GITHUB_CLIENT_ID'),
-                         secret: ENV.fetch('GITHUB_CLIENT_SECRET')
-
-    register Sinatra::Auth::Github
-
-    before /^(?:(?!((^\/logout)|((\.css|\.js)$))).)*$/ do
-      authenticate!
-      github_organization_authenticate! ENV.fetch('GITHUB_ORG')
-    end
-
-    get '/logout' do
-      logout!
-      redirect ENV.fetch('LOGOUT_REDIRECT_URL')
-    end
-  end
-end
-
 require 'sidekiq/web'
-use App::Web
+map '/sidekiq' do
+  use Rack::Auth::Basic, "Protected Area" do |username, password|
+    # Protect against timing attacks:
+    # - See https://codahale.com/a-lesson-in-timing-attacks/
+    # - See https://thisdata.com/blog/timing-attacks-against-string-comparison/
+    # - Use & (do not use &&) so that it doesn't short circuit.
+    # - Use digests to stop length information leaking
+    Rack::Utils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV.fetch("SIDEKIQ_USERNAME"))) &
+      Rack::Utils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV.fetch("SIDEKIQ_PASSWORD")))
+  end
 
-run Sidekiq::Web
+  run Sidekiq::Web
+end

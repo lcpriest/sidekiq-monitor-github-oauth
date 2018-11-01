@@ -2,11 +2,10 @@
 
 source 'https://rubygems.org'
 
-gem 'puma', '~> 3.4.0'
-gem 'sinatra', '~> 1.4', '>= 1.4.7', require: nil
-gem 'sinatra_auth_github', '~> 1.2'
+gem 'puma'
+gem 'sinatra', require: nil
 
-gem 'sidekiq', '~> 4.1', '>= 4.1.2'
+gem 'sidekiq', '5.2.1'
 
 group :development do
   gem 'dotenv', '~> 2.1', '>= 2.1.1'
